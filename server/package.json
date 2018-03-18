@@ -1,0 +1,24 @@
+{
+	"name": "antd-testsys_server",
+	"version": "1.0.0",
+	"description": "antd-testsys's server",
+	"main": "server.js",
+	"license": "MIT",
+	"author": "xiaotu",
+	"dependencies": {
+		"body-parser": "^1.18.2",
+		"dotenv": "^5.0.1",
+		"express": "^4.16.3",
+		"graphql-server-express": "^1.3.2",
+		"graphql-tools": "^2.23.1",
+		"mongoose": "^5.0.10"
+	},
+	"scripts": {
+		"start": "babel-node server.js"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.6.1",
+		"babel-preset-stage-0": "^6.24.1"
+	}
+}
