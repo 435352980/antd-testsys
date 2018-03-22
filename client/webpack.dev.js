@@ -1,7 +1,9 @@
 const path = require('path');
+const htmlPlugin = require('html-webpack-plugin');
+
 const SOURCE_DIR = path.resolve('./src');
 const BUILD_DIR = path.resolve('./dist');
-const htmlPlugin = require('html-webpack-plugin');
+const NODE_MODULES = path.resolve('./node_modules');
 
 module.exports = {
 	resolve: {
@@ -24,9 +26,36 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: [ [ 'env', { module: false } ], 'stage-0', 'react' ]
+						presets: [ [ 'env', { module: false } ], 'stage-0', 'react' ],
+						plugins: [
+							'transform-decorators-legacy',
+							[
+								'import',
+								{ libraryName: 'antd', libraryDirectory: 'es', style: true }
+							] // `style: true` 会加载 less 文件
+						]
 					}
 				}
+			},
+			{
+				test: /\.(css|less)$/,
+				exclude: path.join(NODE_MODULES, 'antd', 'es'),
+				use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader', options: { modules: true } },
+					{ loader: 'postcss-loader' },
+					{ loader: 'less-loader', options: { javascriptEnabled: true } }
+				]
+			},
+			{
+				test: /\.(css|less)$/,
+				include: path.join(NODE_MODULES, 'antd', 'es'),
+				use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' },
+					{ loader: 'postcss-loader' },
+					{ loader: 'less-loader', options: { javascriptEnabled: true } }
+				]
 			}
 		]
 	},
