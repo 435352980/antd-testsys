@@ -1,0 +1,3 @@
+query updateVouchItem($id: Int, $cat: String, $model: String, $color: String, $qty: Int, $price: Float) {
+	updateVouchItem(id: $id, cat: $cat, model: $model, color: $color, qty: $qty, price: $price)
+}

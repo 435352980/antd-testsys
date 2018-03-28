@@ -1,0 +1,3 @@
+query deleteVouchItem($id: Int) {
+	deleteVouchItem(id: $id)
+}

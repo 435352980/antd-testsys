@@ -1,0 +1,3 @@
+query createVouch($maker: String) {
+	createVouch(maker: $maker)
+}

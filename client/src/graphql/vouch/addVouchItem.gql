@@ -1,0 +1,3 @@
+query addVouchItem($code: String, $cat: String, $model: String, $color: String, $qty: Int, $price: Float) {
+	addVouchItem(code: $code, cat: $cat, model: $model, color: $color, qty: $qty, price: $price)
+}

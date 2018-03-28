@@ -40,3 +40,30 @@
 		background-position: 0% 50%;
 	}
 }
+
+@media print {
+	.printHide {
+		visibility: hidden;
+	}
+	.printInfo {
+		page-break-after: avoid;
+		page-break-before: always;
+	}
+}
+
+.vouchTable {
+	width: 100%;
+	max-width: 750px;
+	border-collapse: collapse;
+	border: none;
+}
+.vouchTable th {
+	text-align: center;
+	border: solid #000 1px;
+}
+
+.vouchTable td {
+	height: 24px;
+	text-align: center;
+	border: solid #000 1px;
+}

@@ -7,7 +7,7 @@ const NODE_MODULES = path.resolve('./node_modules');
 
 module.exports = {
 	resolve: {
-		extensions: [ '.js', '.jsx', '.json' ]
+		extensions: [ '.js', '.jsx', '.json', '.gql' ]
 	},
 	devtool: 'source-map',
 	entry: {
@@ -31,8 +31,17 @@ module.exports = {
 							'transform-decorators-legacy',
 							[
 								'import',
-								{ libraryName: 'antd', libraryDirectory: 'es', style: true }
-							] // `style: true` 会加载 less 文件
+								{ libraryName: 'antd', libraryDirectory: 'es', style: true } // `style: true` 会加载 less 文件
+							],
+							[
+								'transform-runtime',
+								{
+									helpers: false,
+									polyfill: false,
+									regenerator: true,
+									moduleName: 'babel-runtime'
+								}
+							]
 						]
 					}
 				}
@@ -56,6 +65,11 @@ module.exports = {
 					{ loader: 'postcss-loader' },
 					{ loader: 'less-loader', options: { javascriptEnabled: true } }
 				]
+			},
+			{
+				test: /\.(graphql|gql)$/,
+				exclude: /node_modules/,
+				loader: 'graphql-tag/loader'
 			}
 		]
 	},

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Row, Col, Layout, Form, Input, Icon, Button, Checkbox } from 'antd';
-import style from '../style.less';
+import React from "react";
+import { Row, Col, Layout, Form, Input, Icon, Button, Checkbox } from "antd";
+import style from "../style.less";
 const Header = Layout.Header;
 const FormItem = Form.Item;
 const Footer = Layout.Footer;
@@ -14,8 +14,8 @@ class Login extends React.Component {
 			<Layout
 				className={style.loginContent}
 				style={{
-					alignContent: 'center',
-					justifyContent: 'center'
+					alignContent: "center",
+					justifyContent: "center"
 				}}
 			>
 				<Form
@@ -26,41 +26,42 @@ class Login extends React.Component {
 						console.log(values);
 					}}
 					style={{
-						margin: '0 auto',
+						margin: "0 auto",
 						width: 360,
-						border: '1px solid #ededed',
+						border: "1px solid #ededed",
 						borderRadius: 3,
-						boxShadow: '0 1px 3px rgba(0,0,0,.25)',
-						backgroundColor: '#FFF'
+						boxShadow: "0 1px 3px rgba(0,0,0,.25)",
+						backgroundColor: "#FFF",
+						zIndex: 0
 					}}
 				>
 					<Header
 						style={{
-							backgroundColor: '#fff',
-							textAlign: 'center',
-							fontSize: '1.2rem'
+							backgroundColor: "#fff",
+							textAlign: "center",
+							fontSize: "1.2rem"
 						}}
 					>
 						用户登录
 					</Header>
 					<FormItem {...FormItemStyle}>
-						{getFieldDecorator('userName', {
-							rules: [ { required: true, message: '请输入账号!' } ]
+						{getFieldDecorator("userName", {
+							rules: [{ required: true, message: "请输入账号!" }]
 						})(
 							<Input
 								size="large"
-								prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+								prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
 								placeholder="账号"
 							/>
 						)}
 					</FormItem>
 					<FormItem {...FormItemStyle}>
-						{getFieldDecorator('password', {
-							rules: [ { required: true, message: '请输入密码!' } ]
+						{getFieldDecorator("password", {
+							rules: [{ required: true, message: "请输入密码!" }]
 						})(
 							<Input
 								size="large"
-								prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+								prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
 								type="password"
 								placeholder="密码"
 							/>
@@ -71,7 +72,7 @@ class Login extends React.Component {
 							size="large"
 							type="primary"
 							htmlType="submit"
-							style={{ width: '100%' }}
+							style={{ width: "100%" }}
 						>
 							登录
 						</Button>

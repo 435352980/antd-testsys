@@ -5,14 +5,13 @@ import { buildRelationFromDoc } from '../lib/relation';
 
 const SubMenu = Menu.SubMenu;
 
-const PageMenu = ({ menuDoc, menuSetting, onSelect }) => {
+const PageMenu = ({ menuDoc, menuSetting, onSelect, style }) => {
 	const relation = buildRelationFromDoc(menuDoc, menuSetting);
 	return (
 		<Menu
 			mode="horizontal"
-			style={{ lineHeight: '64px' }}
-			onSelect={({ key }) => onSelect(key)}
-		>
+			style={{ lineHeight: '60px', ...style }}
+			onSelect={({ key }) => onSelect(key)}>
 			{formatMenuItems(relation)}
 		</Menu>
 	);

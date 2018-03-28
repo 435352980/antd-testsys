@@ -1,0 +1,3 @@
+query deleteVouch($code: String) {
+	deleteVouch(code: $code)
+}

@@ -55,6 +55,8 @@ typings/
 .yarn-integrity
 yarn.lock
 study
+.DS_Store
+dist
 
 # dotenv environment variables file
 .env

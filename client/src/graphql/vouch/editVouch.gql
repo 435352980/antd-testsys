@@ -1,0 +1,3 @@
+query editVouch($code: String) {
+	editVouch(code: $code)
+}

@@ -1,0 +1,24 @@
+query getVouchInfo($code: String) {
+	getVouchInfo(code: $code) {
+		vouchHeader {
+			code
+			crtdate
+			state
+			maker
+			odep
+			idep
+			owh
+			iwh
+			remark
+		}
+		vouchItems {
+			id
+			code
+			cat
+			model
+			color
+			qty
+			price
+		}
+	}
+}

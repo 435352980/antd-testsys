@@ -1,0 +1,23 @@
+query getVouchCodes(
+	$code: String
+	$from: String
+	$to: String
+	$state: Int
+	$maker: String
+	$odep: String
+	$idep: String
+	$owh: String
+	$iwh: String
+) {
+	getVouchCodes(
+		code: $code
+		from: $from
+		to: $to
+		state: $state
+		maker: $maker
+		odep: $odep
+		idep: $idep
+		owh: $owh
+		iwh: $iwh
+	)
+}

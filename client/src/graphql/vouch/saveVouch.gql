@@ -1,0 +1,23 @@
+query saveVouch(
+	$code: String
+	$crtdate: String
+	$state: Int
+	$maker: String
+	$odep: String
+	$idep: String
+	$owh: String
+	$iwh: String
+	$remark: String
+) {
+	saveVouch(
+		code: $code
+		crtdate: $crtdate
+		state: $state
+		maker: $maker
+		odep: $odep
+		idep: $idep
+		owh: $owh
+		iwh: $iwh
+		remark: $remark
+	)
+}
