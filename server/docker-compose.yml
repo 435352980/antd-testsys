@@ -1,0 +1,41 @@
+#指定docker compose打包版本
+version: '2.0'
+services:
+  #容器名
+  antd_test_mongo: 
+    #指定容器名称
+    container_name: antd_test_mongo
+    #镜像名
+    image: mongo
+    #导出端口
+    expose:
+      - "27017"
+    #端口映射
+    ports:
+      - "27017:27017"
+    #映射外部数据到容器指定目录
+    volumes:
+      - ./mongo:/data/db
+  antd_test_redis:
+    container_name: antd_test_redis
+    image: redis
+    expose:
+      - "6379"
+    ports:
+      - "6379:6379"
+    volumes:
+      - /redis:/data
+  antd_test_server:
+    container_name: antd_test_server
+    image: node:8-alpine
+    volumes:
+      - .:/app
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    depends_on:
+      - antd_test_redis
+      - antd_test_mongo
+    command: sh -c "npm config set registry https://registry.npm.taobao.org && yarn && yarn start "

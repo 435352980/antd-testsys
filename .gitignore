@@ -54,10 +54,14 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 yarn.lock
-study
-.DS_Store
-dist
 
 # dotenv environment variables file
 .env
+
+#extra
+study
+.DS_Store
+dist
+mongo/
+redis/
 

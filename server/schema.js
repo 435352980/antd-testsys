@@ -1,7 +1,43 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import * as vouchQuery from './resolvers/vouch';
+import { depQuery, depMutation } from './resolvers/dep';
+import { whQuery, whMutation } from './resolvers/wh';
+import { userQuery } from './resolvers/user';
 
 let schema = `
+    #部门
+    type Dep{
+        name: String
+        no: String
+        cat: Int
+        manager: String
+        managerno: Int
+        phone: String
+        address: String
+    }
+    #仓库
+    type Wh{
+        pname: String
+        pno: String
+        name: String
+        no: String
+        cat: Int
+        manager: String
+        managerno: Int
+        phone: String
+        address: String
+    }
+    #用户
+    type User{
+        no: Int
+        username: String
+        nickname: String
+        role: String
+        pdep: String
+        pdepno: Int
+        email: String
+        phone: String
+    }
     #调拨单
     type VouchInfo{
         vouchHeader: VouchHeader
@@ -85,17 +121,45 @@ let schema = `
         ):String
         #获取单据表体信息
         getVouchItems( code: String ): [ VouchItem ]
+        getDep:[ Dep ]
+        getWh:[ Wh ]
+        getUser:[ User ]
+    }
+    #根处理对象
+    type Mutation{
+        addDep(
+            name: String
+            cat: Int
+            manager: String
+            managerno: Int
+            phone: String
+            address: String
+        ):String
+        deleteDep(no:String):String
+        addWh(
+            pname: String
+            pno: String
+            name: String
+            cat: Int
+            manager: String
+            managerno: Int
+            phone: String
+            address: String
+        ):String
+        deleteWh(no:String):String
     }
 
     #schema
     schema{
         query: Query
+        mutation: Mutation
     }
 `;
 
 export default makeExecutableSchema({
 	typeDefs: schema,
 	resolvers: {
-		Query: { ...vouchQuery }
+		Query: { ...vouchQuery, ...depQuery, ...whQuery, ...userQuery },
+		Mutation: { ...depMutation, ...whMutation }
 	}
 });

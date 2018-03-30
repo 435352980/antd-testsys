@@ -1,0 +1,13 @@
+query getWh {
+	getWh {
+		pname
+		pno
+		name
+		no
+		cat
+		manager
+		managerno
+		phone
+		address
+	}
+}

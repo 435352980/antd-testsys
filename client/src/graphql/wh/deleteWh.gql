@@ -1,0 +1,3 @@
+mutation deleteWh($no: String) {
+	deleteWh(no: $no)
+}

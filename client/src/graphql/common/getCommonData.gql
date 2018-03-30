@@ -1,0 +1,32 @@
+query getCommonData {
+	dep: getDep {
+		name
+		no
+		cat
+		manager
+		managerno
+		phone
+		address
+	}
+	wh: getWh {
+		pname
+		pno
+		name
+		no
+		cat
+		manager
+		managerno
+		phone
+		address
+	}
+	user: getUser {
+		no
+		username
+		nickname
+		role
+		pdep
+		pdepno
+		email
+		phone
+	}
+}

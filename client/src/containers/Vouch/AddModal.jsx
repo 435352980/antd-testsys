@@ -46,7 +46,8 @@ class AddModal extends React.Component {
 						}
 						handleAdd(fieldsValue);
 						this.clearData();
-					})}>
+					})}
+			>
 				<Form>
 					<FormItem {...formColStyle} label="产品类别">
 						{getFieldDecorator('cat', { rules: [ { required: true, message: '请选择类别!' } ] })(
@@ -68,7 +69,7 @@ class AddModal extends React.Component {
 					</FormItem>
 					<FormItem {...formColStyle} label="产品颜色">
 						{getFieldDecorator('color')(
-							<Select size="large" allowClear="true">
+							<Select size="large" allowClear={true}>
 								<Option value={'颜色1'}>颜色1</Option>
 								<Option value={'颜色2'}>颜色2</Option>
 								<Option value={'颜色3'}>颜色3</Option>

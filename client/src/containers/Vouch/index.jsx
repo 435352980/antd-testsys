@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Layout, Row, Col, Card, Form, Button, Icon, Dropdown, Menu, Modal, message } from 'antd';
 import axios from 'axios';
 import { API_PORT } from '../../config';
@@ -25,6 +26,7 @@ const buttonProps = {
 	style: { borderColor: 'transparent' }
 };
 
+@connect(state => ({ common: state.common, auth: state.auth }))
 export default class Vouch extends React.Component {
 	state = {
 		products: [],
@@ -186,11 +188,15 @@ export default class Vouch extends React.Component {
 	};
 
 	render() {
+		const { dep, wh } = this.props.common;
+		const { user } = this.props.auth;
+		console.log(this.props.auth);
 		const printMenu = (
 			<Menu
 				onClick={({ item, key, keyPath }) => {
 					this.setState({ printType: key }, () => this.refs.printWrapper.refs.print.onPrint());
-				}}>
+				}}
+			>
 				<Menu.Item key="1">针式无价格无合计24x14</Menu.Item>
 				<Menu.Item key="2">针式有价格有合计24x14</Menu.Item>
 				<Menu.Item key="3">A4有价格有合计</Menu.Item>
@@ -214,20 +220,23 @@ export default class Vouch extends React.Component {
 							<Button
 								{...buttonProps}
 								icon="filter"
-								onClick={() => this.setState({ showSearchModal: true })}>
+								onClick={() => this.setState({ showSearchModal: true })}
+							>
 								筛选
 							</Button>
 							<Button
 								{...buttonProps}
 								icon="plus-circle-o"
-								onClick={() => this.createVouch('用户1')}>
+								onClick={() => this.createVouch(user.nickname)}
+							>
 								新建
 							</Button>
 							<Button
 								{...buttonProps}
 								disabled={!editable}
 								icon="form"
-								onClick={() => this.setState({ showAddModal: true })}>
+								onClick={() => this.setState({ showAddModal: true })}
+							>
 								添加
 							</Button>
 							<Button
@@ -241,48 +250,55 @@ export default class Vouch extends React.Component {
 										return message.error('请先完善并保存单据信息!');
 									}
 									this.saveVouch();
-								}}>
+								}}
+							>
 								保存
 							</Button>
 							<Button
 								{...buttonProps}
 								disabled={editable}
 								icon="edit"
-								onClick={() => this.editVouch()}>
+								onClick={() => this.editVouch()}
+							>
 								修改
 							</Button>
 							<Button
 								{...buttonProps}
 								icon="verticle-right"
 								disabled={!indexType || indexType === 'first' || indexType === 'only'}
-								onClick={() => this.getVouchInfo(vouchCodes[0])}>
+								onClick={() => this.getVouchInfo(vouchCodes[0])}
+							>
 								首张
 							</Button>
 							<Button
 								{...buttonProps}
 								icon="left"
 								disabled={!indexType || indexType === 'first' || indexType === 'only'}
-								onClick={() => this.getVouchInfo(vouchCodes[index - 1])}>
+								onClick={() => this.getVouchInfo(vouchCodes[index - 1])}
+							>
 								上张
 							</Button>
 							<Button
 								{...buttonProps}
 								icon="right"
 								disabled={!indexType || indexType === 'last' || indexType === 'only'}
-								onClick={() => this.getVouchInfo(vouchCodes[index + 1])}>
+								onClick={() => this.getVouchInfo(vouchCodes[index + 1])}
+							>
 								下张
 							</Button>
 							<Button
 								{...buttonProps}
 								icon="verticle-left"
 								disabled={!indexType || indexType === 'last' || indexType === 'only'}
-								onClick={() => this.getVouchInfo(vouchCodes[vouchCodes.length - 1])}>
+								onClick={() => this.getVouchInfo(vouchCodes[vouchCodes.length - 1])}
+							>
 								尾张
 							</Button>
 							<Button
 								{...buttonProps}
 								icon="reload"
-								onClick={() => this.getVouchInfo(vouchCodes[index])}>
+								onClick={() => this.getVouchInfo(vouchCodes[index])}
+							>
 								刷新
 							</Button>
 							<Button
@@ -301,7 +317,8 @@ export default class Vouch extends React.Component {
 										},
 										onOk() {}
 									});
-								}}>
+								}}
+							>
 								删除
 							</Button>
 
@@ -311,8 +328,11 @@ export default class Vouch extends React.Component {
 								</Button>
 							</Dropdown>
 						</Row>
-					}>
+					}
+				>
 					<VouchHeader
+						dep={dep}
+						wh={wh}
 						vouchHeader={vouchHeader}
 						onChange={vouchHeader => this.setState({ vouchHeader })}
 					/>

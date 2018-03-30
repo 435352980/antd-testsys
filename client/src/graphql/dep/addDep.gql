@@ -1,0 +1,10 @@
+mutation addDep(
+	$name: String
+	$cat: Int
+	$manager: String
+	$managerno: Int
+	$phone: String
+	$address: String
+) {
+	addDep(name: $name, cat: $cat, manager: $manager, managerno: $managerno, phone: $phone, address: $address)
+}

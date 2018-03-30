@@ -1,0 +1,21 @@
+mutation addWh(
+	$pname: String
+	$pno: String
+	$name: String
+	$cat: Int
+	$manager: String
+	$managerno: Int
+	$phone: String
+	$address: String
+) {
+	addWh(
+		pname: $pname
+		pno: $pno
+		name: $name
+		cat: $cat
+		manager: $manager
+		managerno: $managerno
+		phone: $phone
+		address: $address
+	)
+}

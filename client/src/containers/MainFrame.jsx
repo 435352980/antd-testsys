@@ -1,22 +1,34 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { push } from 'react-router-redux';
-import { Layout } from 'antd';
-import Login from './Login';
-import DdMap from './GdMap';
+import { Layout, Button } from 'antd';
 import PageMenu from '../components/PageMenu';
-import * as config from '../config';
+import Login from './Login';
+import SignIn from './SignIn';
+import DdMap from './GdMap';
 import GdMap from './GdMap';
 import Vouch from './Vouch';
+import UserManage from './UserManage';
+import DepManage from './DepManage';
+import WhManage from './WhManage';
+import * as config from '../config';
+import { getCommonData } from '../actions/common';
+import { jwt2h, jwt6s } from '../actions/auth';
 
 const Header = Layout.Header;
 const Content = Layout.Content;
 const { MENU_DOC, MENU_SETTING } = config;
 
-@connect(state => ({ auth: state.auth }), dispatch => ({ dispatch }))
+@connect(
+	state => ({ auth: state.auth }),
+	dispatch => ({ dispatch, ...bindActionCreators({ getCommonData, jwt2h, jwt6s }, dispatch) })
+)
 export default class MainFrame extends React.Component {
-	componentWillMount() {}
+	componentWillMount() {
+		this.props.getCommonData();
+	}
 	render() {
 		//console.log(this.props.children);
 		return (
@@ -57,9 +69,25 @@ export default class MainFrame extends React.Component {
 				</Header>
 				<Layout>
 					<Switch>
+						<Route
+							exact
+							path="/"
+							component={() => {
+								return (
+									<div>
+										<Button onClick={() => this.props.jwt2h()}>token2小时过期</Button>
+										<Button onClick={() => this.props.jwt6s()}>token6秒过期</Button>
+									</div>
+								);
+							}}
+						/>
 						<Route path="/login" component={Login} />
+						<Route path="/signin" component={SignIn} />
 						<Route path="/gdMap" component={GdMap} />
 						<Route path="/vouch" component={Vouch} />
+						<Route path="/userManage" component={UserManage} />
+						<Route path="/depManage" component={DepManage} />
+						<Route path="/whManage" component={WhManage} />
 						<Route component={() => <div>404</div>} />
 					</Switch>
 				</Layout>

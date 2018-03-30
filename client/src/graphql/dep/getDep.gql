@@ -1,0 +1,11 @@
+query getDep {
+	getDep {
+		name
+		no
+		cat
+		manager
+		managerno
+		phone
+		address
+	}
+}

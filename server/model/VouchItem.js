@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-let VouchItemSchema = mongoose.Schema({
+let vouchItemSchema = mongoose.Schema({
 	id: { type: Number, unique: true },
 	code: String,
 	cat: String,
@@ -10,4 +10,4 @@ let VouchItemSchema = mongoose.Schema({
 	price: Number
 });
 
-export default mongoose.model('VouchItem', VouchItemSchema, 'vouchitem');
+export default mongoose.model('VouchItem', vouchItemSchema, 'vouchitem');

@@ -26,18 +26,22 @@ export default class VouchHeader extends React.Component {
 	}
 
 	render() {
+		const dep = this.props.dep || [];
+		const wh = this.props.wh || [];
 		const { code, crtdate, state, maker, odep, idep, owh, iwh, remark } = this.state.vouchHeader;
 		return (
 			<Collapse
 				activeKey={this.state.headerOpenKey}
 				onChange={headerOpenKey => {
 					this.setState({ headerOpenKey });
-				}}>
+				}}
+			>
 				<Panel
 					key="vouchHeader"
 					header={`${this.state.headerOpenKey.length === 0
 						? formatterInfoString(this.state.vouchHeader)
-						: '表头信息'}`}>
+						: '表头信息'}`}
+				>
 					<Form layout="horizontal" style={{ margin: '0 auto', maxWidth: 1200 }}>
 						<Row>
 							<Col span={8}>

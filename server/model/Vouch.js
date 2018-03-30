@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const dateFormat = date => (date ? moment(date).format('YYYY-MM-DD') : null);
 
-let VouchSchema = new mongoose.Schema({
+let vouchSchema = new mongoose.Schema({
 	code: { type: String, unique: true },
 	crtdate: { type: Date, get: dateFormat },
 	state: Number,
@@ -15,4 +15,4 @@ let VouchSchema = new mongoose.Schema({
 	remark: String
 });
 
-export default mongoose.model('Vouch', VouchSchema, 'vouch');
+export default mongoose.model('Vouch', vouchSchema, 'vouch');

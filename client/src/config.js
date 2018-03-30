@@ -1,7 +1,9 @@
 export const API_PORT = 'http://localhost:3000';
 
-export const MENU_DOC = `report{ vouch ranking } echarts gdMap 
-menuDeep{ deep1{ deep2 deep2_2 } deep1_2 }`;
+export const MENU_DOC = `
+manager{ depManage whManage } 
+report{ vouch ranking } echarts gdMap 
+`;
 
 export const MENU_SETTING = [
 	{
@@ -26,5 +28,22 @@ export const MENU_SETTING = [
 		key: 'gdMap',
 		name: '高德地图',
 		icon: 'global'
+	},
+	{
+		key: 'manager',
+		name: '管理',
+		icon: 'appstore'
+	},
+	{
+		key: 'userManage',
+		name: '用户管理'
+	},
+	{
+		key: 'depManage',
+		name: '部门管理'
+	},
+	{
+		key: 'whManage',
+		name: '仓库管理'
 	}
 ];
